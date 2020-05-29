@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat App</title>
+        <link rel="icon" href="./img/user.png">
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+
+        <div class="chat">
+
+            <div id="sidebar" class="chat__sidebar">
+
+            </div>
+            <div class="chat__main container">
+                <div id="messages" class="chat__messages"></div>
+                
+                    <!-- Form -->
+                    <form id="message-form">
+                        <div class="form-group">
+                        <input type="text" class="form-control" name="message"  placeholder="Enter Message" autocomplete= "off" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                    <br>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning" id="send-location">Share Location  <i class="fa fa-location-arrow" aria-hidden="true"></i></button>
+                </div>
+                <br>
+            </div>
+            
+            
+        </div>
+     
+     
+
+        <!-- Template creation -->
+        <script id="message-template" type="text/html">
+            <div class="message">
+                <p>
+                    <span class="message__name">{{username}}</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                <p>{{message}}</p>
+            </div>    
+        </script>
+
+        <!-- Location message template -->
+        <script id="location-template" type="text/html">
+            <div class="message">
+                <p>
+                    <span class="message__name">{{username}}</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                <p><a href="{{url}}" target="_blank">My current location</a></p>
+            </div>
+        </script>
+
+        <!-- Sidebar template -->
+        <script id="sidebar-template" type="text/html">
+            <div class="room-title">{{room}} <i class="fa fa-comments" aria-hidden="true"></i></div>
+
+            <div id="exit-room">
+                <a href= "/"><button type="button" class="btn btn-danger" >Exit </button></a>
+            </div>
+
+            <div class="list-title"> <i class="fa fa-user-circle" aria-hidden="true"></i>  USERS </div>
+            
+            <ul class="users">
+                {{#users}}
+                    <li><img src="https://img.icons8.com/emoji/24/000000/green-circle-emoji.png"/> {{username}}</li>
+                {{/users}}
+            </ul>
+        </script>        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./js/chat.js"></script>
+        
+    </body>
+</html>
